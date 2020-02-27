@@ -1,0 +1,17 @@
+<p id="notice"><%= notice %></p>
+
+<h1>The Horny Ram</h1>
+
+<div class="cards">
+  <% @cocktails.each do |cocktail| %>
+    <%= link_to cocktail_path(cocktail) do %>
+      <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<% image_tag  %>)">
+        <%= cocktail.name %>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+
+<br>
+
+<%= link_to 'New cocktail', new_cocktail_path %>

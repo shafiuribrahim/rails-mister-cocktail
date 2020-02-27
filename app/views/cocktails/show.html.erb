@@ -1,0 +1,44 @@
+<% if flash[:notice] %>
+  <p><%= flash[:notice] %></p>
+<% end %>
+
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4));">
+  <div class="container">
+    <h1><%= @cocktail.name %></h1>
+  </div>
+</div>
+
+<div class="container py-4">
+  <div class="cards">
+    <% @cocktail.doses.each do |dose| %>
+    <%= link_to dose_path(dose) do %>
+      <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= dose.image_url %>)">
+        <%= dose.description %>
+      </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+<div class="container py-5">
+  <div class="row">
+    <div class="col-md-4 mx-auto">
+      <%= simple_form_for [@cocktail, @dose] do |f| %>
+        <%= f.error_notification %>
+        <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+        <div class="form-inputs">
+          <%= f.input :description %>
+        </div>
+
+        <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
+    </div>
+  </div>
+</div>
+
+
+
+<%= link_to 'Back', cocktails_path %>
