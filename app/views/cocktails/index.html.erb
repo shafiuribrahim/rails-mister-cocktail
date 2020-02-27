@@ -1,11 +1,28 @@
 <p id="notice"><%= notice %></p>
 
-<h1>The Horny Ram</h1>
+<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
+  <a class="navbar-brand" href="#">
+    <img src="https://images.getbento.com/NnEw11DrQhiUEb0eIogI_thr-new-logo-w-1.png" />
+</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-<div class="cards">
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+      <%= link_to 'New cocktail', new_cocktail_path %>
+      </li>
+    </ul>
+  </div>
+</div>
+
+
+<div class="cards mb-10">
   <% @cocktails.each do |cocktail| %>
     <%= link_to cocktail_path(cocktail) do %>
-      <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<% image_tag  %>)">
+      <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://images.unsplash.com/photo-1560179304-6fc1d8749b23?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80)">
         <%= cocktail.name %>
       </div>
     <% end %>
@@ -13,5 +30,3 @@
 </div>
 
 <br>
-
-<%= link_to 'New cocktail', new_cocktail_path %>
