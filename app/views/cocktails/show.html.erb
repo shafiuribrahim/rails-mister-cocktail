@@ -2,43 +2,46 @@
   <p><%= flash[:notice] %></p>
 <% end %>
 
-<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4));">
-  <div class="container">
-    <h1><%= @cocktail.name %></h1>
-  </div>
+<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
+  <a class="navbar-brand" href="/cocktails">
+    <img src="https://images.getbento.com/NnEw11DrQhiUEb0eIogI_thr-new-logo-w-1.png" />
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+</div>
+<%= @cocktail.name %>
+<%= @cocktail.description %>
+
+<div class="cards">
+  <% @cocktail.doses.each do |dose| %>
+     <%= dose.description %>
+     <%= dose.ingredient.name %>
+  <% end %>
 </div>
 
-<div class="container py-4">
-  <div class="cards">
-    <% @cocktail.doses.each do |dose| %>
-    <%= link_to dose_path(dose) do %>
-      <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= dose.image_url %>)">
-        <%= dose.description %>
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+  <i class="fas fa-trash-alt"></i>
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
-      <% end %>
-    <% end %>
-  </div>
-</div>
-
-<div class="container py-5">
-  <div class="row">
-    <div class="col-md-4 mx-auto">
-      <%= simple_form_for [@cocktail, @dose] do |f| %>
-        <%= f.error_notification %>
-        <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-
-        <div class="form-inputs">
-          <%= f.input :description %>
-        </div>
-
-        <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
-<% end %>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
     </div>
   </div>
 </div>
-
-
-
-<%= link_to 'Back', cocktails_path %>

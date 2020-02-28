@@ -1,5 +1,50 @@
-<h1>Make your own cocktail!</h1>
+<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
+  <a class="navbar-brand" href="/cocktails">
+    <img src="https://images.getbento.com/NnEw11DrQhiUEb0eIogI_thr-new-logo-w-1.png" />
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+</div>
 
-<%= render 'form', cocktail: @cocktail %>
+<div class="container" style="min-height: 70vh">
+  <div class="row justify-content-center">
+    <div class="col-lg-6 col-12 mx-auto">
+  <!-- <div id="new-form"> -->
+      <h2 class="h2-new">Create your drink!</h2>
+      <%= simple_form_for(@cocktail) do |f| %>
+      <%= f.error_notification %>
+      <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-<%= link_to 'Back', cocktails_path %>
+        <div class="container-form">
+          <div>
+            <div class="form-inputs">
+              <%= f.input :name %>
+            </div>
+            <div class="form-inputs">
+              <%= f.input :description %>
+            </div>
+            <div class="form-actions d-lg-flex d-block">
+              <%= link_to "Back", cocktails_path, class: "btn btn-back w-100 m-lg-3 m-2" %>
+              <%= f.button :submit, class: "btn btn-flat w-100 m-lg-3 m-2" %>
+            </div>
+          </div>
+        </div>
+        <% end %>
+      </div>
+  <!-- </div> -->
+  </div>
+</div>
+
+<div class="footer">
+  <div class="footer-links">
+    <a href="#"><i class="fab fa-github"></i></a>
+    <a href="#"><i class="fab fa-instagram"></i></a>
+    <a href="#"><i class="fab fa-facebook"></i></a>
+    <a href="#"><i class="fab fa-twitter"></i></a>
+    <a href="#"><i class="fab fa-linkedin"></i></a>
+  </div>
+  <div class="footer-copyright">
+    This footer is made with <i class="fas fa-heart"></i> at Le Wagon
+  </div>
+</div>
